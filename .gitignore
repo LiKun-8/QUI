@@ -1,0 +1,5 @@
+# 忽略所有生成的.user文件
+*.user
+*.autosave
+# 忽略目录
+build-*

@@ -17,7 +17,9 @@ SOURCES += main.cpp\
     api/app.cpp \
     api/appinit.cpp \
     usercontrol/frmmessagebox.cpp \
-    usercontrol/frminputbox.cpp
+    usercontrol/frminputbox.cpp \
+    thread.cpp \
+    threadwidget.cpp
 
 HEADERS  += frmmain.h \
     api/iconhelper.h \
@@ -25,7 +27,9 @@ HEADERS  += frmmain.h \
     api/app.h \
     api/appinit.h \
     usercontrol/frmmessagebox.h \    
-    usercontrol/frminputbox.h
+    usercontrol/frminputbox.h \
+    thread.h \
+    threadwidget.h
 
 FORMS    += frmmain.ui \
     usercontrol/frmmessagebox.ui \

@@ -2,7 +2,9 @@
 #define FRMMAIN_H
 
 #include <QDialog>
-#include<QMap>
+#include <QMap>
+#include <QThread>
+#include "thread.h"
 
 namespace Ui
 {
@@ -26,14 +28,18 @@ private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
     void on_pushButton_5_clicked();
+    void on_btnChangeStyle_clicked();
     void on_cboxStyle_currentIndexChanged(const QString &text);
+    void updateBar(int i);
 
 private:
     Ui::frmMain *ui;
 
+//    Thread *testThread;
+    ThreadWidget *widbar;
     void initStyle();   //初始化无边框窗体
     void initForm();    //初始化窗体数据
-
+    static int num;
     bool m_max;           //是否处于最大化状态
     QRect locatRect;     //鼠标移动窗体后的坐标位置
 

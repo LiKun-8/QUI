@@ -103,7 +103,7 @@ public:
         QTime dieTime = QTime::currentTime().addMSecs(sec);
 
         while ( QTime::currentTime() < dieTime ) {
-            QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+            QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
         }
     }
 

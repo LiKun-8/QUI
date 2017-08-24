@@ -1,6 +1,9 @@
 #include "frmmain.h"
 #include "ui_frmmain.h"
 #include "api/myhelper.h"
+#include <QDebug>
+
+int frmMain::num = 0;
 
 frmMain::frmMain(QWidget *parent) :
     QDialog(parent),
@@ -44,6 +47,8 @@ void frmMain::initStyle()
     mapStyle["淡蓝色"] = QString(":/qss/blue.css");
     mapStyle["蓝色"] = QString(":/qss/dev.css");
 
+//    testThread = new Thread();
+    ui->progressBar->setRange(0,4999);
     connect(ui->btnMenu_Close, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->btnMenu_Min, SIGNAL(clicked()), this, SLOT(showMinimized()));
 }
@@ -63,8 +68,8 @@ void frmMain::initForm()
     qssName << "黑色" << "灰黑色" << "灰色" << "浅灰色" << "深灰色" << "银色" << "淡蓝色" << "蓝色";
     ui->cboxStyle->addItems(qssName);
 
-    myHelper::sleep(300);
-    ui->cboxStyle->setCurrentIndex(3);
+//    myHelper::sleep(300);
+    ui->cboxStyle->setCurrentIndex(0);
 }
 
 void frmMain::on_btnMenu_Max_clicked()
@@ -125,3 +130,22 @@ void frmMain::on_cboxStyle_currentIndexChanged(const QString &text) //@wzguo 201
 
     myHelper::setStyle(qssFile);
 }
+
+void frmMain::updateBar(int i)
+{
+    widbar->outputNum(i);
+}
+
+void frmMain::on_btnChangeStyle_clicked()
+{
+    widbar = new ThreadWidget();
+    widbar->show();
+//    widbar->showbar();
+
+    Thread *testThread;
+    testThread = new Thread();
+    connect(testThread,SIGNAL(updateBar(int)),widbar->bar,SLOT(setValue(int)));
+    connect(testThread,SIGNAL(finished()),widbar,SLOT(deleteLater()));
+    testThread->start();
+}
+
